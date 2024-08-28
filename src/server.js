@@ -25,7 +25,7 @@ app.get('/categories/:categoryname/products', async (req, res) => {
     const offset = (page - 1) * limit;
 
     try {
-        // Fetch products from each company
+        
         const responses = await Promise.all([
             axios.get(`${TEST_SERVER_URL}/company1/categories/${categoryname}/products`),
             axios.get(`${TEST_SERVER_URL}/company2/categories/${categoryname}/products`),
@@ -34,7 +34,7 @@ app.get('/categories/:categoryname/products', async (req, res) => {
             axios.get(`${TEST_SERVER_URL}/company5/categories/${categoryname}/products`)
         ]);
 
-        // Combine and sort products
+        
         let products = responses.flatMap(response => response.data);
         products.sort((a, b) => {
             if (order === 'asc') {
